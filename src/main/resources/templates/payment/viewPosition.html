@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+
+    <div class="main">
+        <div class="title">
+            <p>View Position</p>
+        </div>
+        <form th:action="@{/viewPosition}" method="POST">
+            <button type="submit" class="btn-table">View position</button>
+        </form>
+
+        <pre id="code" class="lang-xml" th:text="${positionMessage}">
+        </pre>
+
+    </div>
+</div>
+
+
+</body>
+</html>

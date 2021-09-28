@@ -1,0 +1,99 @@
+<env:Message xmlns:env="urn:montran:message.01">
+    <env:AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.01">
+        <Fr>
+            <FIId>
+                <FinInstnId>
+                    <BICFI>$SENDER$</BICFI> <!-- INTAROB0, INTBROB0...-->
+                </FinInstnId>
+            </FIId>
+        </Fr>
+        <To>
+            <FIId>
+                <FinInstnId>
+                    <BICFI>ZYAKIIDJ</BICFI>
+                </FinInstnId>
+            </FIId>
+        </To>
+        <BizMsgIdr>MREF$REF$</BizMsgIdr>
+        <MsgDefIdr>pacs.008.001.07</MsgDefIdr>
+        <BizSvc>RTP</BizSvc>
+        <CreDt>2021-08-05T10:14:45Z</CreDt>
+    </env:AppHdr>
+    <env:FIToFICstmrCdtTrf xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.07">
+        <GrpHdr xmlns:grphdr="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.07">
+            <grphdr:MsgId>MREF$REF$</grphdr:MsgId>
+            <grphdr:CreDtTm>$DATETIME$</grphdr:CreDtTm><!-- CURRENT DATETIME (ex 2021-08-05T13:14:45+03:00 ) -->
+            <grphdr:NbOfTxs>1</grphdr:NbOfTxs>
+            <grphdr:TtlIntrBkSttlmAmt Ccy="IDR">$AMOUNT$</grphdr:TtlIntrBkSttlmAmt>
+            <grphdr:IntrBkSttlmDt>$DATE$</grphdr:IntrBkSttlmDt><!-- CURRENT DATE (ex: 2021-08-05 )-->
+            <grphdr:SttlmInf>
+                <grphdr:SttlmMtd>CLRG</grphdr:SttlmMtd>
+                <grphdr:ClrSys>
+                    <grphdr:Prtry>SENT</grphdr:Prtry>
+                </grphdr:ClrSys>
+            </grphdr:SttlmInf>
+            <grphdr:PmtTpInf>
+                <grphdr:SvcLvl>
+                    <grphdr:Prtry>SENT</grphdr:Prtry>
+                </grphdr:SvcLvl>
+                <grphdr:LclInstrm>
+                    <grphdr:Cd>INST</grphdr:Cd>
+                </grphdr:LclInstrm>
+            </grphdr:PmtTpInf>
+            <grphdr:InstgAgt>
+                <grphdr:FinInstnId>
+                    <grphdr:BICFI>$SENDER$</grphdr:BICFI>
+                </grphdr:FinInstnId>
+            </grphdr:InstgAgt>
+        </GrpHdr>
+        <CdtTrfTxInf xmlns:crdt="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.07">
+            <crdt:PmtId>
+                <crdt:InstrId>PREF$REF$</crdt:InstrId>
+                <crdt:EndToEndId>PREF$REF$</crdt:EndToEndId>
+                <crdt:TxId>PREF$REF$</crdt:TxId>
+            </crdt:PmtId>
+            <crdt:IntrBkSttlmAmt Ccy="IDR">$AMOUNT$</crdt:IntrBkSttlmAmt>
+            <crdt:AccptncDtTm>$DATETIME$</crdt:AccptncDtTm><!-- CURRENT DATETIME (ex 2021-08-05T13:14:45+03:00 ) -->
+            <crdt:ChrgBr>SLEV</crdt:ChrgBr>
+            <crdt:Dbtr>
+                <crdt:Nm>$DEBTOR NAME$</crdt:Nm>
+                <crdt:Id>
+                    <crdt:OrgId>
+                        <crdt:AnyBIC>$SENDER$</crdt:AnyBIC>
+                    </crdt:OrgId>
+                </crdt:Id>
+            </crdt:Dbtr>
+            <crdt:DbtrAcct>
+                <crdt:Id>
+                    <crdt:IBAN>$FROM_ACCOUNT$</crdt:IBAN>
+                </crdt:Id>
+            </crdt:DbtrAcct>
+            <crdt:DbtrAgt>
+                <crdt:FinInstnId>
+                    <crdt:BICFI>$SENDER$</crdt:BICFI>
+                </crdt:FinInstnId>
+            </crdt:DbtrAgt>
+            <crdt:CdtrAgt>
+                <crdt:FinInstnId>
+                    <crdt:BICFI>$RECEIVER$</crdt:BICFI>
+                </crdt:FinInstnId>
+            </crdt:CdtrAgt>
+            <crdt:Cdtr>
+                <crdt:Nm>$CREDITOR NAME$</crdt:Nm>
+                <crdt:Id>
+                    <crdt:OrgId>
+                        <crdt:AnyBIC>$RECEIVER$</crdt:AnyBIC>
+                    </crdt:OrgId>
+                </crdt:Id>
+            </crdt:Cdtr>
+            <crdt:CdtrAcct>
+                <crdt:Id>
+                    <crdt:IBAN>$TO ACCOUNT$</crdt:IBAN>
+                </crdt:Id>
+            </crdt:CdtrAcct>
+            <crdt:RmtInf>
+                <crdt:Ustrd>$DETAILS$</crdt:Ustrd>
+            </crdt:RmtInf>
+        </CdtTrfTxInf>
+    </env:FIToFICstmrCdtTrf>
+</env:Message>

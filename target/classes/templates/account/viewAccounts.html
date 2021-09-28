@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+<div class="main">
+    <div class="title">
+        <p>Accounts</p>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Number</th>
+            <th>Status</th>
+            <th>Account status</th>
+            <th>Extra information</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="account : ${accountList}" th:action="@{/viewAccounts}" method="GET" >
+            <td><span th:text="${account.getName()}"> Name </span></td>
+            <td><span th:text="${account.getNumber()}"> Number </span></td>
+            <td><span th:text="${account.getStatus()}">Status</span></td>
+            <td><span th:text="${account.getAccountStatus()}">Account status</span></td>
+            <td>
+                <form method="POST" th:action="@{accountDetail(id=${account.getId()})}">
+                    <button type="submit" name="Details" value="value" class="btn-table pull-left" >Details</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</div>>
+
+
+</body>
+</html>

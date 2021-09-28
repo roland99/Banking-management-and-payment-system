@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+
+<div class="main">
+    <div class="title">
+        <p>Users</p>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Extra information</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${userList}" th:action="@{/viewUsers}" method="GET" >
+            <td><span th:text="${user.getFullName()}"> Name </span></td>
+            <td><span th:text="${user.getEmail()}"> Email </span></td>
+            <td><span th:text="${user.getStatus()}">Status</span></td>
+            <td>
+                <form method="POST" th:action="@{userDetail(id=${user.getId()})}">
+                <button type="submit" name="Details" value="value" class="btn-table pull-left" >Details</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</div>
+
+
+</body>
+</html>

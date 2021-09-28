@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Currencies>
+    <Currency>
+        <name>USD</name>
+    </Currency>
+    <Currency>
+        <name>RON</name>
+    </Currency>
+    <Currency>
+        <name>EUR</name>
+    </Currency>
+</Currencies>

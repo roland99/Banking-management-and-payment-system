@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+<div class="main">
+
+  <div class="container">
+    <div class="menu-box">
+      <div class="menu-title">
+        <h3>Modify account</h3>
+      </div>
+
+      <form th:action="@{/modifyAccount}" method="POST">
+
+        <div class = "menu-row">
+
+          <div class="menu-column">
+            <p>
+              <label >Number</label>
+              <input type="text" th:value="${accountDto.getNumber()}" name="number"  readonly>
+            </p>
+            <p>
+              <label >Full name</label>
+              <input   name="name" th:value="${accountDto.getName()}">
+            </p>
+            <p>
+              <label >Currency</label>
+              <input type="text" name="currency" th:value="${accountDto.getCurrency()}"
+                     readonly>
+            </p>
+            <p>
+              <label >Account Status</label>
+              <select  name="accountStatus">
+                <option th:each="accountStatus : ${accountStatusList}"
+                        th:value="${accountStatus}"
+                        th:text="${accountStatus}"
+                        th:selected="${accountStatus == accountDto.getAccountStatus()}">
+                </option>
+              </select>
+            </p>
+
+          </div>
+
+          <div class="menu-column">
+            <p>
+              <label >State</label>
+              <input type="text" name="state" th:value="${accountDto.getState()}">
+            </p>
+            <p>
+              <label >City</label>
+              <input type="text" name="city" th:value="${accountDto.getCity()}">
+            </p>
+            <p>
+              <label >Address</label>
+              <input type="text" name="address" th:value="${accountDto.getAddress()}">
+            </p>
+            <p>
+              <label >Zip code</label>
+              <input type="text" name="zipCode" th:value="${accountDto.getZipCode()}">
+            </p>
+          </div>
+        </div>
+        <p>
+          <button class="btn-submit" type="submit">Modify</button>
+        </p>
+      </form>
+    </div>
+
+  </div>
+</div>
+</div>
+
+</body>
+</html>

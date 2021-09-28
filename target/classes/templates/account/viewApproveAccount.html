@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+<div class="main">
+  <div class="title">
+    <p>Approve/Reject</p>
+  </div>
+  <table>
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>Initiator</th>
+      <th>Operation</th>
+      <th>Target account</th>
+      <th>Target name</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="accountHitory : ${accountHistoryList}"  >
+      <td><span th:text="${accountHitory.getDate()}"> Date </span></td>
+      <td><span th:text="${accountHitory.getInitiatorUsername()}"> Initiator </span></td>
+      <td><span th:text="${accountHitory.getOperation()}"> Operation</span></td>
+      <td><span th:text="${accountHitory.getNumber()}"> Target User</span></td>
+      <td><span th:text="${accountHitory.getName()}"> Target User</span></td>
+      <td>
+        <div class="outer">
+          <form method="POST" th:action="@{approveOperationAccount(id=${accountHitory.getId()})}">
+            <button type="submit" name="Delete" value="value" class="btn-table pull-left" >Approve</button>
+          </form>
+          <form method="POST" th:action="@{rejectOperationAccount(id=${accountHitory.getId()})}">
+            <button type="submit" name="Delete" value="value" class="btn-table pull-right" style="background-color: #ff2521">Reject</button>
+          </form>
+        </div>
+
+
+      </td></td>
+
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</div>>
+
+
+</body>
+</html>

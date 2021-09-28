@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+<div class="main">
+  <div class="title">
+    <p>Delete account</p>
+  </div>
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Delete user</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${accountList}"  >
+      <td><span th:text="${account.getName()}"> Name </span></td>
+      <td><span th:text="${account.getNumber()}"> Email </span></td>
+      <td>
+        <form method="POST" th:action="@{deleteAccount(id=${account.getId()})}">
+          <button type="submit" name="Delete" value="value" class="btn-table" style="background-color: #ff2521">Delete</button>
+        </form>
+      </td></td>
+
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</div>
+
+</body>
+</html>

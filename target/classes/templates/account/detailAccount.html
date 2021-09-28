@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+
+<div class="main">
+  <div class="title">
+    <p>Account detail</p>
+  </div>
+  <table>
+    <thead>
+    <tr>
+      <th>Number</th>
+      <th>Full Name</th>
+      <th>Status</th>
+      <th>Account status</th>
+      <th>State</th>
+      <th>City</th>
+      <th>Address</th>
+      <th>Zip code</th>
+      <th>Currency</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr >
+      <td><span  th:text="${accountDetail.getNumber()}"> Number </span></td>
+      <td><span th:text="${accountDetail.getName()}">Name</span></td>
+      <td><span th:text="${accountDetail.getStatus()}">Status</span></td>
+      <td><span th:text="${accountDetail.getAccountStatus()}">Status</span></td>
+      <td><span th:text="${accountDetail.getState()}">State</span></td>
+      <td><span th:text="${accountDetail.getCity()}">Ciy</span></td>
+      <td><span th:text="${accountDetail.getAddress()}">Address</span></td>
+      <td><span th:text="${accountDetail.getZipCode()}">ZipCode</span></td>
+      <td><span th:text="${accountDetail.getCurrency()}">Currency</span></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="title">
+    <p>Account Balance</p>
+  </div>
+
+
+  <table>
+    <thead>
+    <tr>
+      <th>Available balance</th>
+      <th>Pending</th>
+      <th>Projected balance</th>
+      <th>Currency</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  >
+      <td><span th:text="${#numbers.formatDecimal((accountDetail.getAccountBalance().getAvailableAmountCredit() - accountDetail.getAccountBalance().getAvailableAmountDebit())/100.0,1,'COMMA',2,'POINT')}"> Available balance </span></td>
+      <td><span th:text="${#numbers.formatDecimal(((accountDetail.getAccountBalance().getPendingAmountCredit() - accountDetail.getAccountBalance().getPendingAmountDebit())/100.0),1,'COMMA',2,'POINT')}"> Pending </span></td>
+      <td><span th:text="${#numbers.formatDecimal(((accountDetail.getAccountBalance().getAvailableAmountCredit() + accountDetail.getAccountBalance().getPendingAmountCredit())- (accountDetail.getAccountBalance().getAvailableAmountDebit() + accountDetail.getAccountBalance().getPendingAmountDebit()))/100.0,1,'COMMA',2,'POINT')}">Projected balance</span></td>
+      <td><span th:text="${accountDetail.getCurrency()}">Currency</span></td>
+
+    </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="title">
+    <p>Account audit</p>
+  </div>
+
+
+  <table>
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>Operation</th>
+      <th>By</th>
+      <th>To</th>
+      <th>Detail</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  th:each="accountHistory: ${accountDetail.getAccountHistory()}">
+      <td><span th:text="${accountHistory.getDate()}"> Name </span></td>
+      <td><span th:text="${accountHistory.getOperation()}"> Email </span></td>
+      <td><span th:text="${accountHistory.getInitiatorUsername()}">Status</span></td>
+      <td><span th:text="${accountHistory.getName()}">Status</span></td>
+      <td>
+        <details>
+          <summary>User Data</summary>
+          <dl>
+            <dt th:text="'Number: ' + ${accountHistory.getNumber()}"></dt>
+            <dt th:text="'Account status: ' + ${accountHistory.getAccountStatus()}"></dt>
+            <dt th:text="'Status: ' + ${accountHistory.getStatus()}"></dt>
+            <dt th:text="'State: ' + ${accountHistory.getState()}"></dt>
+            <dt th:text="'City: ' + ${accountHistory.getCity()}"></dt>
+            <dt th:text="'Address: ' + ${accountHistory.getAddress()}"></dt>
+            <dt th:text="'ZipCode: ' + ${accountHistory.getZipCode()}"></dt>
+            <dt th:text="'Currency: ' + ${accountHistory.getCurrency()}"></dt>
+          </dl>
+        </details>
+      </td>
+
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</div>>
+
+
+<script src="amountJS.js"></script>
+
+</body>
+</html>

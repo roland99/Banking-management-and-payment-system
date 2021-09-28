@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link  rel="stylesheet" href="sidemenu.css">
+  <link rel="stylesheet" href="table.css">
+  <script src="https://kit.fontawesome.com/7414e22221.js" crossorigin="anonymous"></script>
+
+  <title>Internship</title>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand-logo">
+    <i class="fas fa-adjust"></i>Internship project 2
+  </div>
+  <nav>
+    <ul>
+      <a th:href="@{/home}" class="nav-btn">Home</a>
+      <a th:href="@{/logout}" class="nav-btn">Log out</a>
+      <a href="#" class="nav-btn">About</a>
+    </ul>
+  </nav>
+</div>
+
+
+
+<div class="sidenav">
+  <button class="dropdown-btn">Users
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a th:href="@{/viewUsers}">View</a>
+    <a th:href="@{/addUser}">Add</a>
+    <a th:href="@{/viewModifyUser}">Modify</a>
+    <a th:href="@{/viewDeleteUser}">Delete</a>
+    <a th:href="@{/viewApproveUser}">Approve</a>
+  </div>
+  <button class="dropdown-btn">Accounts
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a th:href="@{/viewAccounts}">View</a>
+    <a th:href="@{/addAccount}">Add</a>
+    <a th:href="@{/viewModifyAccount}">Modify</a>
+    <a th:href="@{/viewDeleteAccount}">Delete</a>
+    <a th:href="@{/viewApproveAccount}">Approve</a>
+  </div>
+  <button class="dropdown-btn">Balances
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a th:href="@{/viewBalances}">View</a>
+    <a th:href="@{/viewSetBalance}">Set</a>
+  </div>
+  <button class="dropdown-btn">Payments
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a th:href="@{/viewPayments}">View</a>
+    <a th:href="@{/makePayment}">Enter</a>
+    <a th:href="@{/verifyPayment}">Verify</a>
+    <a th:href="@{/approvePayment}">Approve</a>
+    <a th:href="@{/authorizePayment}">Authorize</a>
+    <a th:href="@{/viewPosition}">Position</a>
+    <a th:href="@{/viewGeneral}">General overview</a>
+  </div>
+
+
+</div>
+
+<div class=" dark-mode">
+  <div class="theme-switch-wrapper">
+    <label for="checkbox" class="theme-switch">
+      <input type="checkbox" id="checkbox">
+      <div class="slider round"></div>
+    </label>
+    <em>Switch Mode!</em>
+  </div>
+</div>
+
+<div layout:fragment="content">
+
+</div>
+
+
+
+<script src="themeJS.js"></script>
+<script src="sidemenuJS.js"></script>
+
+</body>
+</html>

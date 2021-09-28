@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+
+    <div class="main">
+        <div class="title">
+            <p>Balance detail</p>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Number</th>
+                <th>Last update</th>
+                <th>Available Amount Credit</th>
+                <th>Available Count Credit</th>
+                <th>Available Amount Debit</th>
+                <th>Available Count Debit</th>
+                <th>Pending Amount Credit</th>
+                <th>Pending Count Credit</th>
+                <th>Pending Amount Debit</th>
+                <th>Pending Count Debit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr >
+                <td><span  th:text="${balanceDetail.getAccount().getNumber()}"> Number </span></td>
+                <td><span th:text="${balanceDetail.getLastUpdate()}">Last update</span></td>
+                <td><span th:text="${#numbers.formatDecimal(balanceDetail.getAvailableAmountCredit()/100.0,1,'COMMA',2,'POINT')}">Available Amount Credit</span></td>
+                <td><span th:text="${balanceDetail.getAvailableCountCredit()}">Available Count Credit</span></td>
+                <td><span th:text="${#numbers.formatDecimal(balanceDetail.getAvailableAmountDebit()/100.0,1,'COMMA',2,'POINT')}">Available Amount Debit</span></td>
+                <td><span th:text="${balanceDetail.getAvailableCountDebit()}">Available Count Debit</span></td>
+                <td><span th:text="${#numbers.formatDecimal(balanceDetail.getPendingAmountCredit()/100.0,1,'COMMA',2,'POINT')}">Pending Amount Credit</span></td>
+                <td><span th:text="${balanceDetail.getPendingCountCredit()}">Pending Count Credit</span></td>
+                <td><span th:text="${#numbers.formatDecimal(balanceDetail.getPendingAmountDebit()/100.0,1,'COMMA',2,'POINT')}">Pending Amount Debit</span></td>
+                <td><span th:text="${balanceDetail.getPendingCountDebit()}">Pending Count Debit</span></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+        <div class="title">
+            <p>Balance audit</p>
+        </div>
+
+
+        <table>
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Operation</th>
+                <th>By</th>
+                <th>To</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  th:each="baalanceHistory: ${balanceDetail.getBalanceHistory()}">
+                <td><span th:text="${baalanceHistory.getDate()}"> Name </span></td>
+                <td><span th:text="${baalanceHistory.getOperation()}"> Email </span></td>
+                <td><span th:text="${baalanceHistory.getInitiatorUsername()}">Status</span></td>
+                <td><span th:text="${balanceDetail.getAccount().getNumber()}">Status</span></td>
+                <td>
+                    <details>
+                        <summary>Balance Data</summary>
+                        <dl>
+                            <dt th:text="'Last update: ' + ${baalanceHistory.getLastUpdate()}"></dt>
+                            <dt th:text="'Available Amount Credit: ' + ${#numbers.formatDecimal(baalanceHistory.getAvailableAmountCredit()/100.0,1,'COMMA',2,'POINT')}"></dt>
+                            <dt th:text="'Available Count Credit: ' + ${baalanceHistory.getAvailableCountCredit()}"></dt>
+                            <dt th:text="'Available Amount Debit: ' + ${#numbers.formatDecimal(baalanceHistory.getAvailableAmountDebit()/100.0,1,'COMMA',2,'POINT')}"></dt>
+                            <dt th:text="'Available Count Debit: ' + ${baalanceHistory.getAvailableCountDebit()}"></dt>
+                            <dt th:text="'Pending Amount Credit: ' + ${#numbers.formatDecimal(baalanceHistory.getPendingAmountCredit()/100.0,1,'COMMA',2,'POINT')}"></dt>
+                            <dt th:text="'Pending Count Credit: ' + ${baalanceHistory.getPendingCountCredit()}"></dt>
+                            <dt th:text="'Pending Amount Debit: ' + ${#numbers.formatDecimal(baalanceHistory.getPendingAmountDebit()/100.0,1,'COMMA',2,'POINT')}"></dt>
+                            <dt th:text="'Pending Count Debit: ' + ${baalanceHistory.getPendingCountDebit()}"></dt>
+                        </dl>
+                    </details>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>>
+
+<script src="amountJS.js"></script>
+
+
+</body>
+</html>

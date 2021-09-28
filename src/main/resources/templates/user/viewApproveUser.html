@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+<div class="main">
+  <div class="title">
+    <p>Approve/Reject</p>
+  </div>
+  <table>
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>Initiator</th>
+      <th>Operation</th>
+      <th>Target user</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="userHitory : ${userHistoryList}"  >
+      <td><span th:text="${userHitory.getDate()}"> Date </span></td>
+      <td><span th:text="${userHitory.getInitiatorUsername()}"> Initiator </span></td>
+      <td><span th:text="${userHitory.getOperation()}"> Operation</span></td>
+      <td><span th:text="${userHitory.getUsername()}"> Target User</span></td>
+      <td>
+        <div class="outer">
+          <form method="POST" th:action="@{aproveOperationUser(id=${userHitory.getId()})}">
+            <button type="submit" name="Delete" value="value" class="btn-table pull-left" >Approve</button>
+          </form>
+          <form method="POST" th:action="@{rejectOperationUser(id=${userHitory.getId()})}">
+            <button type="submit" name="Delete" value="value" class="btn-table pull-right" style="background-color: #ff2521">Reject</button>
+          </form>
+        </div>
+
+
+      </td></td>
+
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+
+</div>
+
+
+</body>
+</html>

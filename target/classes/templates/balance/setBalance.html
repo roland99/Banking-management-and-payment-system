@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+
+  <div class="main">
+
+    <div class="container">
+      <div class="menu-box">
+        <div class="menu-title">
+          <h3>Modify balance</h3>
+        </div>
+
+        <form th:action="@{/setBalance}" method="POST" onsubmit="submitAmountForm();">
+          <div class = "menu-row">
+
+            <div class="menu-column">
+              <p>
+                <label >Name</label>
+                <input type="text" th:value="${balanceDto.getAccount().getName()}" name="username" readonly>
+              </p>
+              <p>
+                <label >Number</label>
+                <input  th:value="${balanceDto.getAccount().getNumber()}" name="password" readonly>
+              </p>
+              <p>
+                <label >Current balance</label>
+                <input type="text"  th:value="${#numbers.formatDecimal((balanceDto.getAvailableAmountCredit()-balanceDto.getAvailableAmountDebit())/100.0,1,'COMMA',2,'POINT')}"
+                        readonly>
+              </p>
+              <p>
+                <label >New balance</label>
+                <input id="amountValue" type="number" name="amount" onchange="setTwoNumberDecimal(this)" step="0.01" onkeyup="if(this.value<0){this.value= this.value * -1}">
+              </p>
+
+            </div>
+
+          </div>
+          <p>
+            <button class="btn-submit" type="submit">Set balance</button>
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <script src="amountJS.js"></script>
+</div>
+
+
+
+</body>
+</html>

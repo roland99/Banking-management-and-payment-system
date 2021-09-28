@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+<div class="main">
+
+  <div class="container">
+    <div class="menu-box">
+      <div class="menu-title">
+        <h3>Add account</h3>
+      </div>
+
+      <form th:action="@{/addAccount}" method="POST">
+        <div class = "menu-row">
+
+          <div class="menu-column">
+            <p>
+              <label >Number(IBAN)</label>
+              <input type="text" id="iban" name="number" placeholder="ex.RO12 1234 1234 1234 1234 1234">
+            </p>
+            <p>
+              <label >Name</label>
+              <input type="text" name="name">
+            </p>
+            <p>
+              <label >State</label>
+              <input type="text" name="state">
+            </p>
+
+          </div>
+
+          <div class="menu-column">
+            <p>
+              <label >City</label>
+              <input type="text" name="city" >
+            </p>
+            <p>
+              <label >Address</label>
+              <input type="text" name="address">
+            </p>
+            <p>
+              <label >Zip code</label>
+              <input type="text" name="zipCode">
+            </p>
+            <p>
+              <label >Currency</label>
+              <select  name="currency">
+                <option th:each="currency : ${currencyList}"
+                        th:value="${currency}"
+                        th:text="${currency}">
+                </option>
+              </select>
+            </p>
+          </div>
+        </div>
+        <p>
+          <button class="btn-submit" type="submit">Create</button>
+        </p>
+      </form>
+    </div>
+
+  </div>
+</div>
+  <script src="ibanJS.js"></script>
+</div>
+
+
+
+</body>
+</html>

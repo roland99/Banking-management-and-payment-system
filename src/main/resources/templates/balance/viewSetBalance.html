@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+
+    <div class="main">
+        <div class="title">
+            <p>Balance modify</p>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Balance</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="balance : ${balanceList}" >
+                <td><span th:text="${balance.getAccount().getName()}"> Name </span></td>
+                <td><span th:text="${balance.getAccount().getNumber()}"> Number </span></td>
+                <td><span th:text="${#numbers.formatDecimal((balance.getAvailableAmountCredit()-balance.getAvailableAmountDebit())/100.0,1,'COMMA',2,'POINT')}"> AccountStatus </span></td>
+                <td><a th:href="@{setBalance(id=${balance.getId()})}" class="btn-table-a">Set amount</a></td></td>
+
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

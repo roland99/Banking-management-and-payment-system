@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+  <div class="main">
+    <div class="title">
+      <p>Approve Payment</p>
+      <div th:if="${param.error}">
+        <div style="color: red">
+          Another user needs to approve the payment.
+        </div>
+      </div>
+
+    </div>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Reference</th>
+        <th>Initiator</th>
+        <th>Amount</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="paymentHistory : ${approvePaymentList}"  >
+        <td><span th:text="${paymentHistory.getDate()}"> Date </span></td>
+        <td><span th:text="${paymentHistory.getReference()}"> Reference </span></td>
+        <td><span th:text="${paymentHistory.getInitiatorUsername()}"> Initiator</span></td>
+        <td><span th:text="${#numbers.formatDecimal((paymentHistory.getAmount())/100.0,1,'COMMA',2,'POINT')}"> Amount</span></td>
+
+        <td>
+          <div class="outer">
+
+            <form method="POST" th:action="@{approvePayment(id=${paymentHistory.getPaymentId()})}">
+              <button type="submit" name="Delete" value="value" class="btn-table pull-right" >Approve</button>
+            </form>
+
+            <form method="POST" th:action="@{rejectPayment(id=${paymentHistory.getPaymentId()})}">
+              <button type="submit" name="Delete" value="value" class="btn-table " style="background-color: #ff2521">Cancel</button>
+            </form>
+
+          </div>
+
+
+        </td></td>
+
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
+
+
+</body>
+</html>

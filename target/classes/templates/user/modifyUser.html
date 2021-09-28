@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+
+<div class="main">
+
+  <div class="container">
+    <div class="menu-box">
+      <div class="menu-title">
+        <h3>Modify user</h3>
+      </div>
+
+      <form th:action="@{/modifyUser}" method="POST">
+        <div th:if="${param.error}">
+          <div style="color: red">
+            Invalid username
+          </div>
+        </div>
+        <div class = "menu-row">
+
+          <div class="menu-column">
+            <p>
+              <label >Username</label>
+              <input type="text" th:value="${userDto.getUsername()}" name="username" aria-describedby="emailHelp">
+            </p>
+            <p>
+              <label >Password</label>
+              <input type="password" placeholder="New password(Optional)" name="password">
+            </p>
+            <p>
+              <label >Email</label>
+              <input type="text" name="email" th:value="${userDto.getEmail()}"
+                     aria-describedby="emailHelp">
+            </p>
+            <p>
+              <label >Full name</label>
+              <input type="text" name="fullName" th:value="${userDto.getFullName()
+              }">
+            </p>
+
+          </div>
+
+          <div class="menu-column">
+            <p>
+              <label >State</label>
+              <input type="text" name="state" th:value="${userDto.getState()}">
+            </p>
+            <p>
+              <label >City</label>
+              <input type="text" name="city" th:value="${userDto.getCity()}">
+            </p>
+            <p>
+              <label >Address</label>
+              <input type="text" name="address" th:value="${userDto.getAddress()}">
+            </p>
+            <p>
+              <label >Zip code</label>
+              <input type="text" name="zipCode" th:value="${userDto.getZipCode()}">
+            </p>
+          </div>
+        </div>
+        <p>
+          <button class="btn-submit" type="submit">Modify</button>
+        </p>
+      </form>
+    </div>
+
+  </div>
+</div>
+</div>
+
+</body>
+</html>

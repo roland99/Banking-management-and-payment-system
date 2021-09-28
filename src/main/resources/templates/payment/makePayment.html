@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+  <div class="main">
+
+    <div class="container">
+      <div class="menu-box">
+        <div class="menu-title">
+          <h3>Make a payment</h3>
+          <div th:if="${param.message}">
+            <div style="color: red" th:text="${param.message}">
+
+            </div>
+          </div>
+        </div>
+
+        <form th:action="@{/makePayment}" method="POST" onsubmit="submitAmountForm();">
+          <div class = "menu-row">
+            <div class="menu-column">
+              <p>
+                <label >Payment reference</label>
+                <input type="text"  name="reference"th:value="${paymentReference}" readonly>
+              </p>
+
+              <p class="hide" id="hideMessage">
+                <label >Message</label>
+                <input type="text"  name="message" >
+              </p>
+            </div>
+            <div class="menu-column">
+
+              <p>
+                <label >From</label>
+                <input type="text" id="iban" name="debitAccount" placeholder="ex.RO12 1234 1234 1234 1234 1234">
+              </p>
+
+              <p>
+                <label >To</label>
+                <input type="text" id="iban2" name="creditAccount" placeholder="ex.RO12 1234 1234 1234 1234 1234" >
+              </p>
+
+              <p class="hide" id="hideName">
+                <label >Full name</label>
+                <input type="text"  name="fullName"  >
+              </p>
+
+              <p class="hide" id="hideIt">
+                <label >Bank </label>
+                <select  name="bank">
+                  <option th:each="bank : ${bankList}"
+                          th:value="${bank.getValue()}"
+                          th:text="${bank.getKey()}">
+                  </option>
+                </select>
+              </p>
+
+            </div>
+
+            <div class="menu-column">
+              <p>
+                <label >Amount</label>
+                <input id="amountValue" type="number" onchange="setTwoNumberDecimal(this)" step="0.01" name="amount" onkeyup="if(this.value<0){this.value= this.value * -1}">
+              </p>
+
+              <p>
+                <label >Currency </label>
+                <select  name="currency">
+                  <option th:each="currency : ${currencyList}"
+                          th:value="${currency}"
+                          th:text="${currency}">
+                  </option>
+                </select>
+              </p>
+              <p>
+                <label >Payment type</label>
+                <select  name="paymentTypeNumber" id="selectId">
+                  <option th:each="type : ${paymentType}"
+                          th:value="${type.ordinal()}"
+                          th:text="${type}">
+                  </option>
+                </select>
+              </p>
+            </div>
+          </div>
+          <p>
+            <button class="btn-submit" type="submit">Make payment</button>
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <script src="ibanJS.js"></script>
+  <script src="amountJS.js"></script>
+  <script>
+    window.addEventListener("load", () => { // when the page loads
+      document.getElementById("selectId").addEventListener("change", function() {
+        document.getElementById("hideIt").classList.toggle("hide", this.value === "0")
+        document.getElementById("hideMessage").classList.toggle("hide", this.value === "0")
+        document.getElementById("hideName").classList.toggle("hide", this.value === "0")
+        })
+    })
+  </script>
+</div>
+
+
+
+</body>
+</html>

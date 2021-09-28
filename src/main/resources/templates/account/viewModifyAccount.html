@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+
+<div class="main">
+  <div class="title">
+    <p>Account modify</p>
+  </div>
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Account status</th>
+      <th>Modify user</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${accountList}" >
+      <td><span th:text="${account.getName()}"> Name </span></td>
+      <td><span th:text="${account.getNumber()}"> Number </span></td>
+      <td><span th:text="${account.getAccountStatus()}"> AccountStatus </span></td>
+      <td><a th:href="@{modifyAccount(id=${account.getId()})}" class="btn-table-a">Modify</a></td></td>
+
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+    <div class="main">
+        <div class="title">
+            <p>Balances</p>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Last modify</th>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Balance</th>
+                <th>Account status</th>
+                <th>Extra information</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="balance : ${balanceList}" th:action="@{/viewBalances}" method="GET" >
+                <td><span th:text="${balance.getLastUpdate()}"> Last update </span></td>
+                <td><span th:text="${balance.getAccount().getName()}"> Name </span></td>
+                <td><span th:text="${balance.getAccount().getNumber()}"> Number </span></td>
+                <td><span th:text="${#numbers.formatDecimal((balance.getAvailableAmountCredit()-balance.getAvailableAmountDebit())/100.0,1,'COMMA',2,'POINT') + ' ' + balance.getAccount().getCurrency()}">Available money</span></td>
+                <td><span th:text="${balance.getAccount().getAccountStatus()}">Account status</span></td>
+                <td>
+                    <form method="POST" th:action="@{balanceDetail(id=${balance.getId()})}">
+                        <button type="submit" name="Details" value="value" class="btn-table pull-left" >Details</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>>
+
+
+</body>
+</html>

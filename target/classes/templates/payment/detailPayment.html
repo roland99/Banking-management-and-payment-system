@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+
+    <div class="main">
+        <div class="title">
+            <p>Payment detail</p>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Reference</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Debit</th>
+                <th>Credit</th>
+                <th>Amount</th>
+                <th>Currency</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  >
+                <td><span th:text="${paymentDetail.getReference()}"> Reference </span></td>
+                <td><span th:text="${paymentDetail.getPaymentType()}"> Type </span></td>
+                <td><span th:text="${paymentDetail.getPaymentStatus()}">Status</span></td>
+                <td><span th:text="${paymentDetail.getDebitAccount()}">Debit</span></td>
+                <td><span th:text="${paymentDetail.getCreditAccount()}">Credit</span></td>
+                <td><span th:text="${#numbers.formatDecimal((paymentDetail.getAmount())/100.0,1,'COMMA',2,'POINT')}">Amount</span></td>
+                <td><span th:text="${paymentDetail.getCurrency()}">Currency</span></td>
+                <td><span th:text="${paymentDetail.getPaymentDate()}">Date</span></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+        <div class="title">
+            <p>Payment audit</p>
+        </div>
+
+
+        <table>
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Operation</th>
+                <th>By</th>
+                <th>Reference</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  th:each="paymentHistory: ${paymentDetail.getPaymentHistory()}">
+                <td><span th:text="${paymentHistory.getDate()}"> Name </span></td>
+                <td><span th:text="${paymentHistory.getOperation()}"> Email </span></td>
+                <td><span th:text="${paymentHistory.getInitiatorUsername()}">Status</span></td>
+                <td><span th:text="${paymentHistory.getReference()}">Status</span></td>
+                <td>
+                    <details>
+                        <summary>Payment Data</summary>
+                        <dl>
+                            <dt th:text="'Type: ' + ${paymentHistory.getPaymentType()}"></dt>
+                            <dt th:text="'Status: ' + ${paymentHistory.getPaymentStatus()}"></dt>
+                            <dt th:text="'Debit: ' + ${paymentHistory.getDebitAccount()}"></dt>
+                            <dt th:text="'Credit: ' + ${paymentHistory.getCreditAccount()}"></dt>
+                            <dt th:text="'Amount: ' + ${#numbers.formatDecimal((paymentHistory.getAmount())/100.0,1,'COMMA',2,'POINT')}"></dt>
+                            <dt th:text="'Currency: ' + ${paymentHistory.getCurrency()}"></dt>
+                            <dt th:text="'PaymentDate: ' + ${paymentHistory.getPaymentDate()}"></dt>
+
+                            <p th:if="${paymentHistory.getPaymentType().toString() == 'EXTERNAL'}">
+                                <dt  th:text="'Bank: ' + ${paymentHistory.getBank()}"></dt>
+                                <dt  th:text="'Full Name: ' + ${paymentHistory.getFullName()}"></dt>
+                                <dt  th:text="'Message: ' + ${paymentHistory.getMessage()}"></dt>
+                            </p>
+                        </dl>
+                    </details>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

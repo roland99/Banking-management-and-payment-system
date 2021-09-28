@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+
+  <div class="main">
+    <div class="title">
+      <p>Payments</p>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th>Reference</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Extra information</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="payment : ${paymentList}" th:action="@{/viewPayment}" method="GET" >
+        <td><span th:text="${payment.getReference()}"> Reference </span></td>
+        <td><span th:text="${payment.getDebitAccount()}"> From </span></td>
+        <td><span th:text="${payment.getCreditAccount()}">To</span></td>
+        <td><span th:text="${#numbers.formatDecimal((payment.getAmount())/100.0,1,'COMMA',2,'POINT') + ' ' + payment.getCurrency()}">Amount</span></td>
+        <td><span th:text="${payment.getPaymentDate()}">Date</span></td>
+        <td><span th:text="${payment.getPaymentStatus()}">Status</span></td>
+        <td>
+          <form method="POST" th:action="@{paymentDetail(id=${payment.getId()})}">
+            <button type="submit" name="Details" value="value" class="btn-table pull-left" >Details</button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+
+</body>
+</html>

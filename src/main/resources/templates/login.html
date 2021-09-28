@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="loginb.css">
+  <script src="https://kit.fontawesome.com/7414e22221.js" crossorigin="anonymous"></script>
+
+  <title>Login</title>
+</head>
+<body>
+<header>
+  <div class="brand-logo">
+    <i class="fas fa-adjust"></i> Internship project 2
+  </div>
+
+</header>
+
+<section id="hero">
+  <div class="container hero-wrap">
+    <div class="quote-wrap">
+
+    </div>
+    <div class="login-wrap">
+      <div class="login-wrap-box">
+        <div class="login-title">
+          <h3>Login</h3>
+          <p>Sign in to your account to continue</p>
+        </div>
+
+        <form th:action="@{login}" method="POST">
+          <div th:if="${param.error}">
+            <div style="color: red">
+              Invalid username or password.
+            </div>
+          </div>
+          <p>
+            <label >Username</label>
+            <input type="text" name="username" aria-describedby="emailHelp">
+          </p>
+          <p>
+          <div class="d-flex">
+            <label >Password</label>
+            <a href="/">Lost password?</a>
+          </div>
+          <input type="password" name="password">
+          </p>
+          <p>
+            <button class="btn-submit" type="submit">Sign in</button>
+          </p>
+        </form>
+        <p class="not-regis">Not registered? <a href="/">Create account</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="theme-switch-wrapper">
+      <label for="checkbox" class="theme-switch">
+        <input type="checkbox" id="checkbox">
+        <div class="slider round"></div>
+      </label>
+      <em>Switch Mode!</em>
+    </div>
+  </div>
+</section>
+
+<script src="themeJS.js"></script>
+
+
+
+</body>
+</html>

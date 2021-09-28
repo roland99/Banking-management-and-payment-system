@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+
+    <div class="main">
+        <div class="title">
+            <p>User detail</p>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Full Name</th>
+                <th>Status</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Zip code</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  >
+                <td><span th:text="${userDetail.getUsername()}"> Name </span></td>
+                <td><span th:text="${userDetail.getEmail()}"> Email </span></td>
+                <td><span th:text="${userDetail.getFullName()}">Status</span></td>
+                <td><span th:text="${userDetail.getStatus()}">Status</span></td>
+                <td><span th:text="${userDetail.getState()}">Status</span></td>
+                <td><span th:text="${userDetail.getCity()}">Status</span></td>
+                <td><span th:text="${userDetail.getAddress()}">Status</span></td>
+                <td><span th:text="${userDetail.getZipCode()}">Status</span></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+    <div class="title">
+        <p>User audit</p>
+    </div>
+
+
+        <table>
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Operation</th>
+                <th>By</th>
+                <th>To</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  th:each="userHistory: ${userDetail.getUserHistory()}">
+                <td><span th:text="${userHistory.getDate()}"> Name </span></td>
+                <td><span th:text="${userHistory.getOperation()}"> Email </span></td>
+                <td><span th:text="${userHistory.getInitiatorUsername()}">Status</span></td>
+                <td><span th:text="${userHistory.getUsername()}">Status</span></td>
+                <td>
+                    <details>
+                        <summary>User Data</summary>
+                        <dl>
+                            <dt th:text="'Email: ' + ${userHistory.getEmail()}"></dt>
+                            <dt th:text="'Full name: ' + ${userHistory.getFullName()}"></dt>
+                            <dt th:text="'Status: ' + ${userHistory.getStatus()}"></dt>
+                            <dt th:text="'State: ' + ${userHistory.getState()}"></dt>
+                            <dt th:text="'City: ' + ${userHistory.getCity()}"></dt>
+                            <dt th:text="'Address: ' + ${userHistory.getAddress()}"></dt>
+                            <dt th:text="'ZipCode: ' + ${userHistory.getZipCode()}"></dt>
+                        </dl>
+                    </details>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

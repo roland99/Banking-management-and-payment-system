@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+
+    <div class="main">
+        <div class="title">
+            <p>View Response</p>
+        </div>
+        <p th:text="${success}"></p>
+
+        <pre id="code" class="lang-xml" th:text="${responseMessage}">
+        </pre>
+
+    </div>
+</div>
+
+
+</body>
+</html>
